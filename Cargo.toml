@@ -1,0 +1,11 @@
+[package]
+name = "ws-forward"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tungstenite = "0.21.0"
+
+[[example]]
+name = "01-tung"
+path = "examples/01_tungstenite.rs"
