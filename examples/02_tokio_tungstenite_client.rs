@@ -7,6 +7,7 @@ use tokio_tungstenite::{
     MaybeTlsStream, WebSocketStream,
 };
 use url::Url;
+use ws_forward::send_slot_subscribe;
 
 #[allow(dead_code)]
 const WS_DEVNET: &str = "wss://api.devnet.solana.com";
@@ -20,12 +21,7 @@ async fn main() -> Result<(), Error> {
     let chain_client = client_to_solana_devnet().await?;
 
     let (mut write_chain, mut read_chain) = chain_client.split();
-    write_chain
-        .send(tungstenite::Message::Text(
-            "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"slotSubscribe\"\n}"
-                .to_string(),
-        ))
-        .await?;
+    send_slot_subscribe(&mut write_chain).await?;
     while let Some(msg) = read_chain.next().await {
         info!("Chain message: {:?}", msg);
     }
