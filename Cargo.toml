@@ -4,8 +4,17 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+env_logger = "0.11.3"
+futures-util = "0.3.30"
+log = "0.4.21"
+tokio = { version = "1.37.0", features = ["full"] }
+tokio-tungstenite = "0.21.0"
 tungstenite = "0.21.0"
 
 [[example]]
 name = "01-tung"
 path = "examples/01_tungstenite.rs"
+
+[[example]]
+name = "02-fwd"
+path = "examples/02_tokio_tungstenite_forward.rs"
