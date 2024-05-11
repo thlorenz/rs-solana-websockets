@@ -17,5 +17,9 @@ name = "01-tung"
 path = "examples/01_tungstenite.rs"
 
 [[example]]
-name = "02-fwd"
-path = "examples/02_tokio_tungstenite_forward.rs"
+name = "02-client"
+path = "examples/02_tokio_tungstenite_client.rs"
+
+[[example]]
+name = "03-fwd"
+path = "examples/03_tokio_tungstenite_forward.rs"

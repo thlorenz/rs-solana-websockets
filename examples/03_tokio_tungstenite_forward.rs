@@ -57,19 +57,14 @@ async fn accept_connection(chain_socket: ChainWebSocket, stream: TcpStream) {
         .await
         .expect("Failed to forward messages");
 
-    while let Some(msg) = read_chain.next().await {
-        info!("Chain message: {:?}", msg);
-    }
-    /*
-        read_chain
-            .inspect(|msg| {
-                info!("Chain message: {:?}", msg);
-            })
-            // .try_filter(|msg| future::ready(msg.is_text() || msg.is_binary()))
-            .forward(write_client)
-            .await
-            .expect("Failed to forward messages");
-    */
+    read_chain
+        .inspect(|msg| {
+            info!("Chain message: {:?}", msg);
+        })
+        // .try_filter(|msg| future::ready(msg.is_text() || msg.is_binary()))
+        .forward(write_client)
+        .await
+        .expect("Failed to forward messages");
 }
 
 async fn client_to_solana_devnet() -> Result<ChainWebSocket> {
