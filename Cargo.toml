@@ -23,3 +23,7 @@ path = "examples/02_tokio_tungstenite_client.rs"
 [[example]]
 name = "03-fwd"
 path = "examples/03_tokio_tungstenite_forward.rs"
+
+[[example]]
+name = "04-split"
+path = "examples/04_tokio_tungstenite_split.rs"
